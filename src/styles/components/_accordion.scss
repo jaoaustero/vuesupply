@@ -1,0 +1,137 @@
+// Name:            Accordion
+// Description:     Component to create accordions
+//
+// Component:       `vh-accordion`
+//
+// Sub-objects:     `vh-accordion-title`
+//                  `vh-accordion-content`
+//
+// States:          `vh-open`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$accordion-item-margin-top:                     margin(global) !default;
+
+$accordion-title-font-size:                     font-size(medium) !default;
+$accordion-title-line-height:                   1.4 !default;
+$accordion-title-color:                         color(emphasis) !default;
+$accordion-title-hover-color:                   color(default) !default;
+
+$accordion-content-margin-top:                  margin(global) !default;
+
+$accordion-border-width:                        0.235px !default;
+$accordion-border-color:                        border(border-color) !default;
+
+$accordion-default-box-shadow:                  box-shadow(small) !default;
+
+$accordion-padding-small:                       gutter(xsmall) !default;
+$accordion-padding-medium:                      gutter(small) !default;
+
+
+
+/* ==================================================
+  Component: Accordion
+ ================================================== */
+
+.vh-accordion{
+    padding: 0;
+    list-style: none;
+}
+
+
+
+/* Item
+================================================== */
+
+.vh-accordion > :nth-child(n+2){
+    margin-top: $accordion-item-margin-top;
+}
+
+
+
+/* Title
+================================================== */
+
+.vh-accordion-title{
+    display: block;
+    font-size: $accordion-title-font-size;
+    line-height: $accordion-title-line-height;      
+    color: $accordion-title-color !important;
+    overflow: hidden;
+}
+
+.vh-accordion-title i{
+    float: right;
+    margin-top: 8px;
+
+    transition: all 0.3s ease;
+}
+
+.vh-accordion-title i.accordion-icon-rotate{
+    transform: rotateZ(-180deg);
+}
+
+/* Hover + Focus */
+.vh-accordion-title:hover,
+.vh-accordion-title:focus{
+    color: $accordion-title-hover-color !important;
+    text-decoration: none;
+    outline: none;
+}
+
+
+
+/* Content
+================================================== */
+
+.vh-accordion-content{
+    display: none;
+    margin-top: $accordion-content-margin-top;
+}
+
+.vh-accordion-content.vh-open{
+    display: block;
+}
+
+/*
+* Micro clearfix
+*/
+
+.vh-accordion-content{
+    @include clearfix;
+}
+
+
+/*
+* Remove margin from the last-child
+*/
+
+.vh-accordion-content > :last-child{
+ margin-bottom: 0;
+}
+
+
+/* Stlye modifier
+================================================== */
+
+.vh-accordion-border > li{
+    border-style: solid;
+    border-width: $accordion-border-width;
+    border-color: $accordion-border-color;
+}
+
+.vh-accordion-padding-small > li{
+    padding: $accordion-padding-small;
+}
+
+.vh-accordion-padding-medium > li{
+    padding: $accordion-padding-medium;
+}
+
+.vh-accordion-raised > li{
+    box-shadow: $accordion-default-box-shadow;
+}

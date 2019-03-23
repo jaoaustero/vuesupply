@@ -1,0 +1,98 @@
+// Name:            Tooltip
+// Description:     Component to create tooltip
+//
+// Component:       `vh-tooltip-top`
+//                  `vh-tooltip-top-left`
+//                  `vh-tooltip-top-right`
+//                  `vh-tooltip-bottom`
+//                  `vh-tooltip-bottom-left`
+//                  `vh-tooltip-bottom-right`
+//                  `vh-tooltip-left`
+//                  `vh-tooltip-right`
+//
+//
+// States:          `vh-active`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$tooltip-z-index:                           layer(lightbox) !default;
+$tooltip-max-width:                         200px !default;
+$tooltip-padding-vertical:                  3px !default;
+$tooltip-padding-horizontal:                6px !default;
+$tooltip-background:                        color(secondary) !default;
+$tooltip-border-radius:                     2px !default;
+$tooltip-color:                             color(inverse) !default;
+$tooltip-font-size:                         12px !default;
+
+$tooltip-margin:                            10px !default;
+
+
+/* ==================================================
+    Component: Tooltip
+   ================================================== */
+
+/*
+ * 1. Hide by default
+ * 2. Position
+ * 3. Dimension
+ * 4. Style
+ */
+
+.vh-tooltip{
+    /* 1 */
+    display: none;
+    /* 2 */
+    position: absolute;
+    z-index: $tooltip-z-index;
+    /* 3 */
+    box-sizing: border-box;
+    max-width: $tooltip-max-width;
+    padding: $tooltip-padding-vertical $tooltip-padding-horizontal;
+    /* 4 */
+    background: $tooltip-background;
+    border-radius: $tooltip-border-radius;
+    color: $tooltip-color;
+    font-size: $tooltip-font-size;
+}
+
+.vh-tooltip.vh-active{
+    display: block;
+}
+
+.vh-tooltip:after{
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    width: 0;
+    height: 0;
+    border-top: solid 6px color(secondary);
+    border-left: solid 6px transparent;
+    border-right: solid 6px transparent;
+}
+
+
+/* Direction / Alignment modifiers
+   ================================================== */
+
+/* Direction */
+[class*='vh-tooltip-top']{
+    margin-top: (-$tooltip-margin);
+}
+
+[class*='vh-tooltip-bottom']{ 
+    margin-top: $tooltip-margin;
+}
+
+[class*='vh-tooltip-left']{
+    margin-left: (-$tooltip-margin);
+}
+
+[class*='vh-tooltip-right']{
+    margin-left: $tooltip-margin;
+}

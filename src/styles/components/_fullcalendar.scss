@@ -1,0 +1,280 @@
+// Name:            Full Calendar
+// Description:     Component to create Full Calendar
+//
+// Component:       `vh-fullcalendar`
+//
+// Sub-components:  `vh-fullcalendar-container`
+//                  `vh-fullcalendar-header`
+//                  `vh-fullcalendar-table`
+//                  `vh-fullcalendar-weekdays`
+//                  `vh-fullcalendar-content`
+//                  `vh-fullcalendar-weeks`
+//                  `vh-fullcalendar-days-grid`
+//                  `vh-fullcalendar-days`
+//                  `vh-fullcalendar-events`
+//
+// State:           `vh-active`
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+$fullcalendar-width:                                100% !default;
+$fullcalendar-height:                               100% !default;
+
+$fullcalendar-weekdays-height:                      40px !default;
+$fullcalendar-weekdays-width:                       100% !default;
+$fullcalendar-weekdays-line-height:                 $fullcalendar-weekdays-height !default;
+$fullcalendar-weekdays-background:                  color(primary) !default;
+$fullcalendar-weekdays-color:                       color(inverse) !default;
+
+$fullcalendar-days-active:                          transparentize(color(primary), 0.9) !default;
+
+
+
+/* ==================================================
+    Component: Fullcalendar
+   ================================================== */ 
+
+/*
+ * 1. Set a default dimensions
+ * 2. Style
+ */
+
+.vh-fullcalendar-container{
+    position: relative;
+    /* 1 */
+    width: $fullcalendar-width;
+    height: $fullcalendar-height;
+    /* 2 */
+    border-radius: border(border-radius);
+    overflow: hidden;
+}
+
+
+
+/* Header
+   ================================================== */
+
+/*
+ * 1. Set dimensions
+ * 2. Align center
+ */
+
+.vh-fullcalendar-header{
+    /* 1 */
+    height: 80px;
+    width: 100%;
+    /* 2 */
+    text-align: center;
+    /* 3 */
+    background-color: color(primary);
+    color: color(inverse);
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 80px;
+}
+
+
+
+/* Table
+   ================================================== */
+
+/*
+ * 1. Fix layout
+ * 2. Remove most spacing between table cells.
+ * 3. Behave like a block element
+ */
+
+.vh-fullcalendar-table{
+    /* 1 */
+    table-layout: fixed;
+    /* 2 */
+    border-collapse: collapse;
+    border-spacing: 0;
+    /* 3 */
+    width: 100%;
+    height: 100%;
+}
+
+/*
+ * Remove default padding
+ */
+
+.vh-fullcalendar-table td:not(.vh-fullcalendar-days):not(.vh-fullcalendar-event-wrapper){
+    padding: 0;
+}
+
+
+
+
+/*
+ * Weekdays
+ */
+.vh-fullcalendar-weekdays{
+    height: $fullcalendar-weekdays-height;
+    width: $fullcalendar-weekdays-width;
+
+    
+    background-color: $fullcalendar-weekdays-background;
+    color: $fullcalendar-weekdays-color; 
+}
+
+.vh-fullcalendar-weekdays > *{
+    line-height: $fullcalendar-weekdays-line-height;
+    text-transform: capitalize;
+}
+
+
+
+/* Content
+   ================================================== */
+
+.vh-fullcalendar-content{
+    position: relative;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    background-color: #F4F4F4;
+}
+
+
+
+/* Weeks
+   ================================================== */
+
+/*
+ * 1. Set dimension
+ * 2. set border for grids
+ */
+
+.vh-fullcalendar-weeks{
+    position: relative;
+    /* 1 */
+    height: 150px;
+    /* 2 */
+    border-top: none;
+    border-bottom: 1px solid #E5E5E5;
+    border-left: 1px solid #E5E5E5;
+    border-right: 1px solid #E5E5E5;
+}
+
+
+/*
+ * Items
+ */
+
+/*
+ * Days grid
+ * Created a dummy table to make vertical grid lines
+ * 1. Set position
+ * 2. set layer z-index
+ * 3. Set childs `td` borders
+*/
+.vh-fullcalendar-days-grid{
+    position: absolute;
+    /* 1 */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* 2 */
+    z-index: 1;
+}
+
+/* 3 */
+.vh-fullcalendar-days-grid td{
+    border: 1px solid #E5E5E5;
+}
+
+/* Active */
+.vh-fullcalendar-days-grid .vh-active{
+    background-color: $fullcalendar-days-active;
+}
+
+
+
+/* Days
+   ================================================== */
+
+/*
+ * Wrapper makes the content overlap to `days-grid`  it display the days and events.
+ * 1. Set position
+ * 2. set layer z-index
+ */
+.vh-fullcalendar-days-wrapper{
+    position: absolute;
+    /* 1 */
+    top: 0;
+    left: 0;
+    right: 0;
+    /* 2 */
+    z-index: 4;
+}
+
+
+/*
+ * Days
+ */
+.vh-fullcalendar-days{
+    padding: 6px;
+}
+
+.vh-fullcalendar-days > *{
+    float: right;
+    margin: 0;
+    cursor: default;
+}
+
+
+
+/* Event
+   ================================================== */
+
+.vh-fullcalendar-event-wrapper{
+    padding: 6px;
+}
+
+.vh-fullcalendar-event{
+    position: relative;
+    display: block;
+    background-color: color(muted);
+    color: color(inverse);
+    border-radius: border(border-radius);
+    padding: 2px 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.vh-fullcalendar-event:hover{
+    background-color: darken(color(muted), 5%);
+    color: color(inverse);
+    text-decoration: none;
+}
+
+/* Primary */
+.vh-fullcalendar-event.vh-fullcalendar-primary{
+    background-color: color(primary);
+    color: color(inverse);
+}
+
+.vh-fullcalendar-event.vh-fullcalendar-primary:hover{
+    background-color: darken(color(primary), 5%);
+    color: color(inverse);
+}
+
+/* Success */
+.vh-fullcalendar-event.vh-fullcalendar-success{
+    background-color: color(success);
+    color: color(inverse);
+}
+
+.vh-fullcalendar-event.vh-fullcalendar-success:hover{
+    background-color: darken(color(success), 5%);
+    color: color(inverse);
+}

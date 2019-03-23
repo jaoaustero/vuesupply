@@ -1,0 +1,317 @@
+//  ==================================================
+//  Name:               Button
+//  Description:        Styles for buttons
+//
+//  Component:          `vh-button-*` 
+//
+//  Sub-components:     `vh-button-group`
+//                      `vh-floating-button`
+//
+//  Modifiers:          `vh-button-default`
+//                      `vh-button-primary`
+//                      `vh-button-secondary`
+//                      `vh-button-warning`
+//                      `vh-button-danger`
+//                      `vh-button-outline-primary`
+//                      `vh-button-outline-secondary`
+//                      `vh-button-outline-warning`
+//                      `vh-button-outline-danger`
+//                      
+//
+//  States:             `active`
+//  ==================================================
+
+//  ==================================================
+//  Variables
+//  ==================================================
+
+$button-line-height:                        control-height(medium) !default;
+$button-small-line-height:                  control-height(small) !default;
+$button-large-line-height:                  control-height(large) !default;
+
+$button-font-size:                          font(font-size) !default; 
+$button-small-font-size:                    font-size(small) !default;
+$button-large-font-size:                    font-size(large) !default;
+
+$button-padding-horizontal:                 gutter(small) !default;
+$button-small-padding-horizontal:           gutter(xsmall) !default;
+$button-large-padding-horizontal:           gutter(large) !default;
+
+$button-border-radius:                      4px !default;
+$button-border-width:                       border(border-width) !default;
+$button-border-color:                       border(border-color) !default;
+
+$button-disabled-background:                $global-muted-background !default;
+$button-disabled-color:                     color(muted) !default;
+$button-disabled-border-color:              $global-muted-background !default;
+
+$button-text-line-height:                   font(line-height) !default;
+$button-text-color:                         color(muted) !default;
+$button-text-hover-color:                   color(default) !default;
+$button-text-disabled-color:                color(muted) !default;
+
+$button-link-color:                         link(base) !default;
+$button-link-hover-color:                   link(dark) !default;
+$button-link-line-height:                   font(line-height) !default;
+$button-link-hover-text-decoration:         underline !default;
+$button-link-disabled-color:                color(muted) !default;
+/*
+ * 1. Remove margins in Chrome, Safari, and Opera.
+ * 2. Remove borders for `button`.
+ * 3. Remove border-radius in Chrome.
+ * 4. Address `overflow` set to `hidden` in IE.
+ * 5. Correct `font` properties and `color` not being inherited for `button`.
+ * 6. Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 7. Style
+ * 8. `line-height` is used to create a height because it also centers the text vertically for `a` elements.
+ *      Better would be to use height and flexbox to center the text vertically but flexb ox doesn't work in Firefox on `button` elements.
+ * 9. Align text if button has a width.
+ * 10. Require for `a`.
+ */
+
+.vh-button{
+    /* 1 */
+    margin: 0;
+    /* 2 */
+    border: none;
+    /* 3 */
+    border-radius: $button-border-radius;
+    /* 4 */
+    overflow: visible;
+    /* 5 */
+    font: inherit;
+    color: inherit;
+    /* 6 */
+    text-transform: none;
+    /* 7 */
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 $button-padding-horizontal;
+    vertical-align: middle;
+    font-size: $button-font-size;
+    /* 8 */
+    line-height: $button-line-height;
+    /* 9 */
+    text-align: center;
+    /* 10 */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.vh-button:not(:disabled){
+    cursor: pointer;
+}
+
+/*
+ * Remove the inner border and padding in Firefox
+ */
+.vh-button::-moz-focus-inner{
+    border: 0;
+    padding: 0;
+}
+
+/* Hover */
+.vh-button:hover{
+    /* 8 */
+    text-decoration: none;
+}
+
+/* Focus */
+.vh-button:focus{
+    outline: none;
+}
+
+/*
+ * Disabled
+ * The same for all style modifiers
+ */
+
+.vh-button-default:disabled,
+.vh-button-primary:disabled,
+.vh-button-secondary:disabled,
+.vh-button-success:disabled,
+.vh-button-warning:disabled,
+.vh-button-danger:disabled{
+    background-color: $button-disabled-background;
+    color: $button-disabled-color;
+    border: 1px solid $button-disabled-border-color;
+
+    &:hover, &:focus{
+        background-color: $button-disabled-background;
+        color: $button-disabled-color;
+        border: 1px solid $button-disabled-border-color;
+    }
+}
+
+
+/* Style modifiers
+   ================================================== */
+
+@include create-modifiers-with-selectors(background, button);
+
+
+
+/* Outline Style modifiers
+   ================================================== */
+
+@include create-outline-modifiers-with-selectors(button);
+
+
+
+/* Size Style modifiers
+   ================================================== */
+
+.vh-button-small{
+    padding: 0 $button-small-padding-horizontal;
+    line-height: $button-small-line-height;
+    font-size: $button-small-font-size;
+}
+
+.vh-button-large{
+    padding: 0 $button-large-padding-horizontal;
+    line-height: $button-large-line-height;
+    font-size: $button-large-font-size;
+}
+
+.vh-button-wide{
+    padding: 0 $button-large-padding-horizontal;
+}
+
+
+
+/* Text Button
+   ================================================== */
+
+.vh-button-text{
+    /* 1 */
+    padding: 0;
+    line-height: $button-text-line-height;
+    background: none;
+    /* 2 */
+    color: $button-text-color;
+}
+
+/* Hover + Focus */
+.vh-button-text:hover,
+.vh-button-text:focus{
+    color: $button-text-hover-color;
+}
+
+/* Disabled */
+.vh-button-text:disabled{
+    color: $button-text-disabled-color;
+}
+
+.vh-button-text-danger:enabled{
+    color: color(danger);
+}
+
+.vh-button-text-danger:hover:not(:disabled){
+    color: darken(color(danger), 15%);
+}
+
+
+/* Text Button Modifier
+   ================================================== */
+
+@include create-modifiers-with-selectors(text, button);
+
+
+
+/* Link Button
+   ================================================== */
+
+/*
+ * Link
+ * 1, Reset
+ * 2. Style
+ */
+
+.vh-button-link{
+    /* 1 */
+    padding: 0;
+    line-height: $button-link-line-height;
+    background: none;
+    /* 2 */
+    color: $button-link-color;
+}
+
+/* Hover + Focus */
+.vh-button-link:hover,
+.vh-button-link:focus{
+    color: $button-link-hover-color;
+    text-decoration: $button-link-hover-text-decoration;
+}
+
+/* Disabled */
+.vh-button-link:disabled{
+    color: $button-link-disabled-color;
+    text-decoration: none;
+}
+
+
+
+/* Group
+   ================================================== */
+
+/*
+ * 1. Using `flex` instead of `inline-block` to prevent whitespace between child elements
+ * 2. Behave like button
+ * 3. Create position context
+ */
+
+.vh-button-group{
+    /* 1 */
+    display: inline-flex;
+    /* 2 */
+    vertical-align: middle;
+    /* 3 */
+    position: relative;
+}
+
+
+/* Floating
+   ================================================== */
+
+/*
+ * Floating Button
+ * 1. set position
+ * 2. set size
+ * 3. Style
+ */
+
+.vh-floating-button{
+    /* 1 */
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    /* 2 */
+    height: 60px;
+    width: 60px;
+    /* 3 */
+    background-color: theme-color(primary);
+    border: none;
+    border-radius: 50%;
+    color: color(inverse);
+    z-index: layer(floating-button);
+    text-align: center;
+    line-height: 60px;
+    box-shadow: box-shadow(medium);
+}
+
+
+/* Load More Ghost Button
+   ================================================== */
+
+.vh-ghost-button{
+    background-color: transparent;
+    border: solid 1px color(primary);
+    color: color(primary);
+    padding: 10px 40px;
+}
+
+.vh-ghost-button:hover,
+.vh-ghost-button:focus{
+    background-color: color(primary);
+    color: color(inverse);
+}

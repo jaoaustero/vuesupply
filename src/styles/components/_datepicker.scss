@@ -1,0 +1,306 @@
+// Name:            Datepicker
+// Description:     Component to create datepicker
+//
+// Component:       `vh-datepicker`
+//
+// Modifiers:       `vh-datepicker-middle`
+//                  `vh-table-divider`
+//
+// States:          `vh-open`,
+//                  `vh-mark`
+//                  `vh-active`
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+$datepicker-z-index:                            layer(dropdown) !default;
+$datepicker-min-width:                          200px !default;
+$datepicker-padding:                            25px !default;
+$datepicker-background:                         color(inverse) !default;
+$datepicker-margin:                             margin(small) !default;
+
+$datepicker-title-font-size:                    font-size(large) !default;
+$datepicker-title-font-weight:                  bold !default;
+$datepicker-title-color:                        color(emphasis) !default;
+
+$datepicker-nav-padding-vertical:               6px !default;
+$datepicker-nav-padding-horizontal:             6px !default;   
+$datepicker-nav-item-color:                     color(muted) !default;
+$datepicker-nav-item-hover-color:               color(default) !default;   
+
+$datepicker-header-cell-padding-vertical:       16px !default;
+$datepicker-header-cell-padding-horizontal:     12px !default;
+$datepicker-header-cell-font-size:              font(font-size) !default;
+$datepicker-header-cell-font-weight:            bold !default;
+$datepicker-header-cell-color:                  color(default) !default;
+
+$datepicker-data-cell-height:                   control-height(medium) + 10px !default;
+$datepicker-data-cell-width:                    control-height(medium) + 10px !default;
+$datepicker-data-cell-line-height:              control-height(medium) + 10px !default;
+$datepicker-data-cell-font-size:                font(font-size) !default;
+$datepicker-data-cell-font-weight:              lighter !default;
+$datepicker-data-cell-color:                    color(default) !default;
+
+$datepicker-data-cell-disabled-color:           color(muted) !default;
+
+$datepicker-data-cell-hover-color:              color(emphasis) !default;
+
+$datepicker-data-cell-active-background:        color(primary) !default;
+$datepicker-data-cell-active-color:             color(inverse) !default;
+$datepicker-data-cell-active-border-radius:     border(border-radius) !default;
+
+$datepicker-data-cell-mark-color:               color(primary) !default;
+
+$datepicker-box-shadow:                         box-shadow(medium) !default;
+
+/* ==================================================
+    Component: Dropdown
+   ================================================== */ 
+
+/*
+ * 1. Hide by default
+ * 2. Set position
+ * 3. Set a default width
+ * 4. Style
+ */
+
+.vh-datepicker{
+    /* 1 */
+    display: none;
+    /* 2 */
+    position: absolute;
+    bottom: 0;
+    z-index: $datepicker-z-index;
+    /* 3 */
+    padding: $datepicker-padding;
+    background: $datepicker-background;
+    margin-top: $datepicker-margin;
+    box-shadow: $datepicker-box-shadow;
+}
+
+@include respond-to-max(small){
+    .vh-datepicker{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        margin-left: 15px;
+
+        height: fit-content;
+    }
+}
+
+/* Show */
+.vh-datepicker.vh-open{
+    display: block;
+}
+
+/* Dropup */
+.vh-datepicker.vh-datepicker-dropup{
+    top: auto;
+    bottom: 0!important;
+}
+
+
+/* Header
+   ================================================== */
+
+.vh-datepicker-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: margin(global);
+}
+
+
+
+/* Action
+   ================================================== */
+
+.vh-datepicker-action{
+    margin-top: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.vh-datepicker-action > *:first-child {
+    text-align: left;
+}
+
+.vh-datepicker-action > *:last-child {
+    text-align: right;
+}
+
+
+/*
+ * Items
+ */
+
+.vh-datepicker-action > button{
+    background: transparent;
+    color: color(muted);
+
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* hover + active*/
+.vh-datepicker-action > button:hover,
+.vh-datepicker-action > button:active{
+    color: color(default);
+    cursor: pointer;
+}
+
+/* Focus */
+.vh-datepicker-action > button:focus{
+    color: color(emphasis);
+    outline: none;
+}
+
+
+
+
+/* Table
+   ================================================== */
+
+/*
+ * 1. Remove most spacing between table cells.
+ * 2. Behave like a block element
+ */
+
+.vh-datepicker-table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    /* 2 */
+    width: 100%;
+}
+
+
+
+/*
+ * Header cell
+ * 1. Style
+ */
+.vh-datepicker-table th{
+    padding: $datepicker-header-cell-padding-horizontal $datepicker-header-cell-padding-vertical;
+    text-align: center;
+    vertical-align: bottom;
+    /* 1 */
+    font-size: $datepicker-header-cell-font-size;
+    font-weight: $datepicker-header-cell-font-weight;
+    color: $datepicker-header-cell-color;
+    text-transform: uppercase;
+}
+
+@include respond-to-max(small){
+    .vh-datepicker-table th{
+        padding: 0px;
+        font-size: font-size(small);
+    }
+}
+
+
+
+/*
+ * Date Cell
+ */
+
+.vh-datepicker-table td{
+    text-align: center;
+}
+
+/*
+ * Data Cell Item
+ * 1. Remove margins in Chrome, Safari, and Opera.
+ * 2. Remove borders for `button`
+ * 3. Address `overflow` set to `hidden` in IE.
+ * 4. Correct `font` properties and `color` not being inherited for `button`
+ * 5. Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 6. Style
+ * 7. `line-height` is used to create a height because it also centers the text vertically for `a` elements.
+ *      Better would be to use height and flexbox to center the text vertically but flexb ox doesn't work in Firefox on `button` elements.
+ * 8. Align text if button has a width.
+ * 9. Transition for chaging background when `active and hover`
+ */
+.vh-datepicker-table td > button{
+    /* 1 */
+    margin: 0;
+    /* 2 */
+    border: none;
+    /* 3 */
+    overflow: visible;
+    /* 4 */
+    font: inherit;
+    color: $datepicker-data-cell-color;
+    /* 5 */
+    text-transform: none;
+    /* 6 */
+    background: transparent;
+    // padding: $datepicker-data-cell-padding-horizontal $datepicker-data-cell-padding-vertical;
+    height: $datepicker-data-cell-height;
+    width: $datepicker-data-cell-width;
+    line-height: $datepicker-data-cell-line-height;
+    vertical-align: middle;
+    font-size: $datepicker-data-cell-font-size;
+    font-weight: $datepicker-data-cell-font-weight;
+    color: $datepicker-data-cell-color;
+    outline: none;
+    /* 7 */
+    // line-height: control-height(medium);
+    /* 8 */
+    text-align: center;
+    /* 9 */
+    transition: all 0.3 ease;
+}
+
+@include respond-to-max(small){
+    .vh-datepicker-table td > button{
+        height: 30px;
+        width: 30px;
+        font-size: font(font-size);
+        line-height: font(font-size);
+    }
+}
+
+.vh-datepicker-table td > button:not(:disabled){
+    cursor: pointer;
+}
+
+/*
+ * Remove the inner border and padding in Firefox
+ */
+
+.vh-datepicker-table td > button::-moz-focus-inner{
+    border: 0;
+    padding: 0;
+}
+
+/* Hover */
+.vh-datepicker-table td > button:hover{
+    color: $datepicker-data-cell-hover-color; 
+}
+
+/* Focus */
+.vh-datepicker-table td > button:focus,
+.vh-datepicker-table td > button.vh-active{
+    background: $datepicker-data-cell-active-background;
+    border-radius: $datepicker-data-cell-active-border-radius;
+    color: $datepicker-data-cell-active-color; 
+}
+
+/* Mark */
+.vh-datepicker-table td > button.vh-mark:not(.vh-active):not(:focus){
+    color: $datepicker-data-cell-mark-color;
+    font-weight: bold;
+}
+
+/* Disabled */
+.vh-datepicker-table td > button:disabled{
+    color: $datepicker-data-cell-disabled-color;
+    cursor: not-allowed;
+}

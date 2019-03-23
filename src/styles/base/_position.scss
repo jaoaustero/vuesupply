@@ -1,0 +1,240 @@
+// Name:            Position
+// Description:     Utilities to position content
+//
+// Component:       `vh-position-absolute`
+//                  `vh-position-relative`
+//                  `vh-position-z-index`
+//                  `vh-position-top`
+//                  `vh-position-bottom`
+//                  `vh-position-left`
+//                  `vh-position-right`
+//                  `vh-position-top-left`
+//                  `vh-position-top-center`
+//                  `vh-position-top-right`
+//                  `vh-position-bottom-left`
+//                  `vh-position-bottom-center`
+//                  `vh-position-bottom-right`
+//                  `vh-position-center`
+//                  `vh-position-center-left`
+//                  `vh-position-center-right`
+//                  `vh-position-cover`
+//
+// Modifiers:       `vh-position-small`
+//                  `vh-position-medium`
+//                  `vh-position-large`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$position-small-margin:                                 gutter(small) !default;
+$position-medium-margin:                                gutter(medium) !default;
+$position-large-margin:                                 gutter(small) !default;
+$position-large-margin-l:                               50px !default;
+
+
+/* ========================================================================
+   Component: Position
+ ========================================================================== */
+
+
+/* Directions
+ ========================================================================== */
+
+[class*='vh-position-top'],
+[class*='vh-position-bottom'],
+[class*='vh-position-left'],
+[class*='vh-position-right'],
+[class*='vh-position-center'] { position: absolute !important; }
+
+
+/* Edges
+ ========================================================================== */
+
+/* Don't use `width: 100%` because it is wrong if the parent has padding. */
+.vh-position-top {
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.vh-position-bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.vh-position-left {
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.vh-position-right {
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+
+/* Corners
+ ========================================================================== */
+
+.vh-position-top-left {
+    top: 0;
+    left: 0;
+}
+
+.vh-position-top-right {
+    top: 0;
+    right: 0;
+}
+
+.vh-position-bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+.vh-position-bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+/*
+ * Center
+ * 1. Fix text wrapping if content is larger than 50% of the container (Not working in Firefox)
+ * 2. Fix text wrapping for Firefox
+ */
+
+.vh-position-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /* 1 */
+    display: table;
+    /* 2 */
+    width: -moz-max-content;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Vertical */
+[class*='vh-position-center-left'],
+[class*='vh-position-center-right'] {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.vh-position-center-left { left: 0; }
+.vh-position-center-right { right: 0; }
+
+.vh-position-center-left-out {
+    right: 100%;
+    width: max-content;
+}
+
+.vh-position-center-right-out {
+    left: 100%;
+    width: max-content;
+}
+
+/* Horizontal */
+.vh-position-top-center,
+.vh-position-bottom-center {
+    left: 50%;
+    transform: translateX(-50%);
+    /* 1 */
+    display: table;
+    /* 2 */
+    width: -moz-max-content;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.vh-position-top-center { top: 0; }
+.vh-position-bottom-center { bottom: 0; }
+
+
+/* Cover
+ ========================================================================== */
+
+.vh-position-cover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+/* Utility
+ ========================================================================== */
+
+.vh-position-relative { position: relative !important; }
+
+.vh-position-absolute { position: absolute !important; }
+
+.vh-position-fixed { position: fixed !important; }
+
+.vh-position-z-index { z-index: 1; }
+
+
+/* Margin modifier
+ ========================================================================== */
+
+/*
+ * Small
+ */
+
+.vh-position-small { margin: $position-small-margin; }
+
+.vh-position-small.vh-position-center { transform: translate(-50%, -50%) translate(-$position-small-margin, (-$position-small-margin)); }
+
+.vh-position-small[class*='vh-position-center-left'],
+.vh-position-small[class*='vh-position-center-right'] { transform: translateY(-50%) translateY(-$position-small-margin); }
+
+.vh-position-small.vh-position-top-center,
+.vh-position-small.vh-position-bottom-center { transform: translateX(-50%) translateX(-$position-small-margin); }
+
+/*
+ * Medium
+ */
+
+.vh-position-medium { margin: $position-medium-margin; }
+
+.vh-position-medium.vh-position-center { transform: translate(-50%, -50%) translate(-$position-medium-margin, (-$position-medium-margin)); }
+
+.vh-position-medium[class*='vh-position-center-left'],
+.vh-position-medium[class*='vh-position-center-right'] { transform: translateY(-50%) translateY(-$position-medium-margin); }
+
+.vh-position-medium.vh-position-top-center,
+.vh-position-medium.vh-position-bottom-center { transform: translateX(-50%) translateX(-$position-medium-margin); }
+
+/*
+ * Large
+ */
+
+.vh-position-large { margin: $position-large-margin; }
+
+.vh-position-large.vh-position-center { transform: translate(-50%, -50%) translate(-$position-large-margin, (-$position-large-margin)); }
+
+.vh-position-large[class*='vh-position-center-left'],
+.vh-position-large[class*='vh-position-center-right'] { transform: translateY(-50%) translateY(-$position-large-margin); }
+
+.vh-position-large.vh-position-top-center,
+.vh-position-large.vh-position-bottom-center { transform: translateX(-50%) translateX(-$position-large-margin); }
+
+/* Desktop and bigger */
+@include respond-to(large){
+    .vh-position-large { margin: $position-large-margin-l; }
+
+    .vh-position-large.vh-position-center { transform: translate(-50%, -50%) translate(-$position-large-margin-l, (-$position-large-margin-l)); }
+
+    .vh-position-large[class*='vh-position-center-left'],
+    .vh-position-large[class*='vh-position-center-right'] { transform: translateY(-50%) translateY(-$position-large-margin-l); }
+
+    .vh-position-large.vh-position-top-center,
+    .vh-position-large.vh-position-bottom-center { transform: translateX(-50%) translateX(-$position-large-margin-l); }
+}

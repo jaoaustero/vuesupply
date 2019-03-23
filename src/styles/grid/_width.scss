@@ -1,0 +1,46 @@
+// Name:            Width
+// Description:     Component to create boxed content containers
+//
+// Component:       `vh-child-width-*`
+//                  `vh-width-*`
+//                  `vh-width-fit-content`
+//
+// ========================================================================
+
+
+/* ==================================================
+    Component: Width
+   ================================================== */ 
+
+
+/* Equal child widths
+   ================================================== */
+
+@include create-child-width-with-breakpoints;
+
+
+
+/* Single widths
+   ================================================== */
+
+@include create-width-with-breakpoints;
+
+
+
+/* Pixel based widths
+   ================================================== */
+
+@include create-width-pixel-based;
+
+
+
+/* Fit Content
+   ================================================== */
+
+.vh-width-fit-content{
+    width: fit-content;
+}
+
+[class*="vh-width"]{
+    transition: all 0.3s ease-in;
+}

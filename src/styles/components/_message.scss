@@ -1,0 +1,116 @@
+//  Name:            Alert
+//  Description:     Component to create alert messages
+//
+//  Component:       `vh-alert`
+//
+//  Sub-objects:    `vh-alert-with-icon`
+//                  `vh-alert-icon`
+//                  `vh-alert-message`
+//                  `vh-alert-title`
+//
+//  Adopted:        `vh-alert-close`
+//
+//  Modifiers:      `vh-alert-primary`
+//                  `vh-alert-success`
+//                  `vh-alert-warning`
+//                  `vh-alert-danger`
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+$alert-margin-vertical:             gutter(small) !default;
+$alert-padding:                     gutter(xsmall) + 5px !default;
+$alert-padding-right:               $alert-padding !default;
+$alert-padding-left:                gutter(medium) + 10px !default;
+$alert-background:                  $global-muted-background !default;
+$alert-color:                       color-yiq($alert-background) !default;
+
+$alert-close-top:                   $alert-padding !default;
+$alert-close-right:                 $alert-padding !default;
+
+$alert-title-font-size:             font-size(medium) !default;
+$alert-title-font-weight:           medium !default;
+
+
+/* ========================================================================
+   Component: Alert
+ ========================================================================== */
+
+.vh-alert{
+    position: relative;
+    margin-bottom: $alert-margin-vertical;
+    padding: $alert-padding $alert-padding-right $alert-padding $alert-padding;
+    background-color: $alert-background;
+    color: $alert-color;
+    font-size: 14px;
+}
+
+.vh-alert-with-icon{
+    padding-left: $alert-padding-left;
+}
+
+/* Add margin if adjacent element */
+* + .vh-alert{
+    margin-top: $alert-margin-vertical;
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.vh-alert > :last-child{
+    margin-bottom: 0;
+}
+
+
+
+/* Item
+ ========================================================================== */
+ 
+.vh-alert-icon{
+    position: absolute;
+    top: 50%;
+    left: $alert-padding - 6px;
+    margin-top: -16px;
+    font-size: 24px;
+}
+
+.vh-alert-message{
+    display: block;
+    max-width: 90%;
+}
+
+.vh-alert-title{
+    font-size: $alert-title-font-size;
+    font-weight: $alert-title-font-weight;
+}
+
+
+
+/* Close
+ * Adopts `vh-close`
+ ========================================================================== */
+
+.vh-alert-close{
+    position: absolute;
+    top: 50%;
+    right: $alert-close-right;
+    margin-top: -5px;
+    font-size: 10px;
+}
+
+/*
+ * Remove margin from adjacent element
+ */
+
+.vh-alert-close:first-child + *{
+    margin-top: 0;
+}
+
+
+/* Style modifiers
+ ========================================================================== */
+
+@include create-modifiers(alert);

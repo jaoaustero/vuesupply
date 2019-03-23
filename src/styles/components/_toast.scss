@@ -1,0 +1,170 @@
+// Name:            Modal
+// Description:     Component to create modal dialogs
+//
+// Component:       `vh-modal`
+//
+// Sub-objects:     `vh-modal-page`
+//                  `vh-modal-dialog`
+//                  `vh-modal-header`
+//                  `vh-modal-body`
+//                  `vh-modal-footer`
+//                  `vh-modal-title`
+//                  `vh-modal-close`
+//
+// Adopted:         `vh-modal-close-default`
+//                  `vh-modal-close-outside`
+//                  `vh-modal-close-full`
+//
+// Modifiers:       `vh-modal-container`
+//                  `vh-modal-full`
+//
+// States:          `vh-open`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$notification-position:                     10px !default;
+$notification-z-index:                        layer(notification) !default;
+$notification-width:                        600px !default;
+
+$notification-message-margin-bottom:        10px !default;
+$notification-message-padding:              gutter(small) !default;
+$notification-message-background:           color(muted) !default;
+$notification-message-color:                color(default) !default;
+$notification-message-font-size:            font-size(medium) !default;
+$notification-message-line-height:          1.4 !default;
+
+$notification-message-icon-margin-right:    16px !default;
+$notification-message-icon-width:           auto !default;
+
+$notification-close-top:                    $notification-message-padding + 5px !default;
+$notification-close-right:                  $notification-message-padding !default;
+
+
+
+/* ========================================================================
+   Component: Notification
+ ========================================================================== */
+
+/*
+ * 1. Set position
+ * 2. Dimensions
+ */
+
+.vh-notification{
+    /* 1 */
+    position: fixed;
+    top: $notification-position;
+    left: $notification-position;
+    z-index: $notification-z-index;
+    /* 2 */
+    box-sizing: border-box;
+    width: $notification-width;
+}
+
+
+
+/* Position modifiers
+ ========================================================================== */
+
+.vh-notification-top-right,
+.vh-notification-bottom-right{
+    left: auto;
+    right: $notification-position;
+}
+
+.vh-notification-top-center,
+.vh-notification-bottom-center{
+    left: 50%;
+    margin-left: ($notification-width / -2);
+}
+
+.vh-notification-bottom-left,
+.vh-notification-bottom-right,
+.vh-notification-bottom-center{
+    top: auto;
+    bottom: $notification-position;
+}
+
+
+
+/* Responsiveness
+ ========================================================================== */
+
+/* Phones portrait and smaller */
+
+@include respond-to-max(xsmall){
+
+    .vh-notification{
+        left: $notification-position;
+        right: $notification-position;
+        width: auto;
+        margin: 0;
+    }
+
+}
+
+
+
+/* Message
+ ========================================================================== */
+
+.vh-notification-message{
+    position: relative;
+    margin-bottom: $notification-message-margin-bottom;
+    padding: $notification-message-padding;
+    background: $notification-message-background;
+    color: $notification-message-color;
+    font-size: $notification-message-font-size;
+    line-height: $notification-message-line-height;
+    cursor: pointer;
+    box-shadow: box-shadow(medium);
+}
+
+.vh-notification-icon,
+.vh-notification-content{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.vh-notification-icon{
+    margin-top: 2px;
+    margin-right: 12px;
+}
+
+.vh-notification-icon{
+    width: $notification-message-icon-width;
+    margin-right: $notification-message-icon-margin-right;
+}
+
+.vh-notification-icon + .vh-notification-content{
+    width: unquote('calc(100% - 50px)');
+}
+
+
+
+/* Close
+ * Adopts `vh-close`
+ ========================================================================== */
+
+.vh-notification-close{
+    display: none;
+    position: absolute;
+    font-size: 12px;
+    top: $notification-close-top;
+    right: $notification-close-right;
+}
+
+.vh-notification-message:hover .vh-notification-close{
+    display: block;
+}
+
+
+
+/* Style modifiers
+ ========================================================================== */
+
+@include create-modifiers(notification-message);

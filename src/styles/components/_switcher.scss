@@ -1,0 +1,44 @@
+// Name:            Swticher
+// Description:     Component to navigate through different content panes
+//
+// Component:       `vh-switcher`
+//
+// States:          `vh-active`
+//
+// ========================================================================
+
+
+/* ==================================================
+    Component: Switcher
+   ================================================== */
+
+/*
+ * Reset list 
+ */
+
+.vh-switcher{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+
+/* Items
+   ================================================== */
+
+/*
+ * Hide not active items
+ */
+
+.vh-switcher > :not(.vh-active){
+    display: none;
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.vh-switcher > * > :last-child{
+    margin-bottom: 0;
+}

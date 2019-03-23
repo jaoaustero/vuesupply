@@ -1,0 +1,865 @@
+// Name:            Forms
+// Description:     Styles for forms
+//
+// Component:       `vh-form-*`
+//                  `vh-input`
+//                  `vh-select`
+//                  `vh-textarea`
+//                  `vh-radio`
+//                  `vh-checkbox`
+//                  `vh-legend`
+//                  `vh-fieldset`
+//
+// Sub-objects      `vh-form-custom`
+//                  `vh-form-stacked`
+//                  `vh-form-horizontal`
+//                  `vh-form-label`
+//                  `vh-form-controls`
+//                  `vh-form-icon`
+//                  `vh-form-icon-flip`
+//
+// Modifiers:       `vh-form-small`
+//                  `vh-form-large`
+//                  `vh-form-danger`
+//                  `vh-form-success`
+//                  `vh-form-blank`
+//                  `vh-form-width-xsmall`
+//                  `vh-form-width-small`
+//                  `vh-form-width-large`
+//                  `vh-form-controls-text`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$form-height:                                    control-height(medium) !default;
+$form-line-height:                               $form-height !default;
+$form-padding-horizontal:                        10px !default;
+$form-padding-vertical:                          4px !default;
+$form-font-family:                               font(font-family) !default;
+
+$form-background:                                color(inverse) !default;
+$form-color:                                     color(default) !default;
+
+$form-focus-background:                          color(inverse) !default;
+$form-focus-color:                               color(default) !default;
+
+$form-disabled-background:                       $global-muted-background !default;
+$form-disabled-color:                            color(muted) !default;
+
+$form-placeholder-color:                         color(muted) !default;
+
+$form-small-height:                              control-height(small) !default;
+$form-small-padding-horizontal:                  8px !default;
+$form-small-line-height:                         $form-small-height !default;
+$form-small-font-size:                           font-size(small) !default;
+
+$form-large-height:                              control-height(large) !default;
+$form-large-padding-horizontal:                  12px !default;
+$form-large-line-height:                         $form-large-height !default;
+$form-large-font-size:                           font-size(medium)!default;
+
+$form-danger-color:                              color(danger) !default;
+$form-success-color:                             color(success) !default;
+
+$form-width-xsmall:                              50px !default;
+$form-width-small:                               130px !default;
+$form-width-medium:                              200px !default;
+$form-width-large:                               500px !default;
+
+$form-select-padding-right:                      20px !default;
+$form-select-icon-color:                         color(default) !default;
+$form-select-option-color:                       #444 !default;
+$form-select-disabled-icon-color:                color(muted) !default;
+
+$form-radio-size:                                16px !default;
+$form-radio-margin-top:                          -4px !default;
+$form-radio-background:                          darken(color(inverse), 5%) !default;
+
+$form-radio-checked-background:                  color(primary) !default;
+$form-radio-checked-icon-color:                  color(inverse) !default;
+
+$form-radio-checked-focus-background:            darken(color(primary), 10%) !default;
+
+$form-radio-disabled-background:                 color(muted) !default;
+$form-radio-disabled-icon-color:                 color(muted) !default;
+
+$form-legend-font-size:                          font-size(large) !default;
+$form-legend-line-height:                        1.4 !default;
+
+$form-stacked-margin-bottom:                     margin(xsmall) !default;
+
+$form-horizontal-label-width:                    200px !default;
+$form-horizontal-label-margin-top:               7px !default;
+$form-horizontal-controls-margin-left:           215px !default;
+$form-horizontal-controls-text-padding-top:      7px !default;
+
+$form-icon-width:                                $form-height !default;
+$form-icon-font-size:                            font(font-size) !default;
+$form-icon-color:                                color(muted) !default;
+$form-icon-hover-color:                          color(default) !default;
+
+
+$internal-form-select-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2224%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22#000%22%20points%3D%2212%201%209%206%2015%206%22%20%2F%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22#000%22%20points%3D%2212%2013%209%208%2015%208%22%20%2F%3E%0A%3C%2Fsvg%3E%0A" !default;
+$internal-form-radio-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ccircle%20fill%3D%22#000%22%20cx%3D%228%22%20cy%3D%228%22%20r%3D%222%22%20%2F%3E%0A%3C%2Fsvg%3E" !default;
+$internal-form-checkbox-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22#000%22%20points%3D%2212%201%205%207.5%202%205%201%205.5%205%2010%2013%201.5%22%20%2F%3E%0A%3C%2Fsvg%3E%0A" !default;
+$internal-form-checkbox-indeterminate-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22#000%22%20x%3D%223%22%20y%3D%228%22%20width%3D%2210%22%20height%3D%221%22%20%2F%3E%0A%3C%2Fsvg%3E" !default;
+
+$icon-checked-white: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23fff%22%20points%3D%2212%201%205%207.5%202%205%201%205.5%205%2010%2013%201.5%22%20%2F%3E%0A%3C%2Fsvg%3E%0A" !default;
+
+$internal-form-search-image: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgaWQ9InNlYXJjaC1zdmciIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiIHZpZXdCb3g9IjAgMCAxNCAxNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxuczpzZXJpZj0iaHR0cDovL3d3dy5zZXJpZi5jb20vIiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjEuNDE0MjE7Ij4KICAgIDxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDEsLTg4LjA1MjksLTE4NCkiPgogICAgICAgIDxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDEsMC4wNjg5NDUyLDE1OS4zMjcpIj4KICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMC4yODA2NTksMCwwLDAuMjc5OTM5LDYzLjI3MTEsLTI2LjgzNTEpIj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xMjAuNjEzLDIxOS4zNTlDMTE5LjA5OCwyMjAuNjU0IDExNy4zOSwyMjEuNzIgMTE1LjUyOCwyMjIuNDgxQzEwNC45OTIsMjI2Ljc4OSA5MS4yMTUsMjIwLjE4NSA4OC41MTIsMjA4LjQ4OUM4NS44ODMsMTk3LjExNCA5NC44NTIsMTg0LjM2NyAxMDcuNDY0LDE4NC4wMDdDMTA3LjY3OSwxODQuMDAyIDEwNy44OTQsMTg0IDEwOC4xMDksMTg0QzExNy4yODksMTg0LjA4OCAxMjUuOTI1LDE5MS4xNTIgMTI3LjYyNCwyMDAuMzIyQzEyOC42NzMsMjA1Ljk4MyAxMjYuOTM5LDIxMS45NjUgMTIzLjM4MywyMTYuNDcyTDEzNy40OTcsMjMwLjU4NkMxMzguODgzLDIzMi4wNDkgMTM2LjcyMywyMzUuMzYxIDEzNC42NjgsMjMzLjQxNEwxMjAuNjEzLDIxOS4zNTlaTTEwNy44NzYsMTg4QzEwMC41MDgsMTg4LjA3MSA5My42MjcsMTkzLjcxNiA5Mi4yNjgsMjAxLjA1MUM5MC41ODEsMjEwLjE1IDk4LjM4OSwyMTkuODk4IDEwNy44NzYsMjE5Ljk1OEMxMTguMTc3LDIyMC4wMjQgMTI3LjA4MiwyMDguMTA4IDEyMi43MDQsMTk3Ljc2NUMxMjAuMzE4LDE5Mi4xMjYgMTE0LjUzNSwxODguMTQyIDEwOC4yOSwxODguMDAzQzEwOC4xNTIsMTg4LjAwMSAxMDguMDE0LDE4OCAxMDcuODc2LDE4OFoiIHN0eWxlPSJmaWxsLXJ1bGU6bm9uemVybzsiLz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==" !default;
+
+
+$internal-form-search-2-image: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+Cjxzdmcgd2lkdGg9IjMwIiBoZWlnaHQ9IjE2IiBmaWxsPSIjNjY2NjY2IiB2aWV3Qm94PSIwIDAgNTAgNTEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM6c2VyaWY9Imh0dHA6Ly93d3cuc2VyaWYuY29tLyIgc3R5bGU9ImZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDoxLjQxNDIxOyI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC04OC4wNTI5LC0xODQpIj4KICAgICAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDAuMDY4OTQ1MiwxNTkuMzI3KSI+CiAgICAgICAgICAgIDxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDEsLTAuMDY4OTQ1MiwtMTU5LjMyNykiPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTEyMC42MTMsMjE5LjM1OUMxMTkuMDk4LDIyMC42NTQgMTE3LjM5LDIyMS43MiAxMTUuNTI4LDIyMi40ODFDMTA0Ljk5MiwyMjYuNzg5IDkxLjIxNSwyMjAuMTg1IDg4LjUxMiwyMDguNDg5Qzg1Ljg4MywxOTcuMTE0IDk0Ljg1MiwxODQuMzY3IDEwNy40NjQsMTg0LjAwN0MxMDcuNjc5LDE4NC4wMDIgMTA3Ljg5NCwxODQgMTA4LjEwOSwxODRDMTE3LjI4OSwxODQuMDg4IDEyNS45MjUsMTkxLjE1MiAxMjcuNjI0LDIwMC4zMjJDMTI4LjY3MywyMDUuOTgzIDEyNi45MzksMjExLjk2NSAxMjMuMzgzLDIxNi40NzJMMTM3LjQ5NywyMzAuNTg2QzEzOC44ODMsMjMyLjA0OSAxMzYuNzIzLDIzNS4zNjEgMTM0LjY2OCwyMzMuNDE0TDEyMC42MTMsMjE5LjM1OVpNMTA3Ljg3NiwxODhDMTAwLjUwOCwxODguMDcxIDkzLjYyNywxOTMuNzE2IDkyLjI2OCwyMDEuMDUxQzkwLjU4MSwyMTAuMTUgOTguMzg5LDIxOS44OTggMTA3Ljg3NiwyMTkuOTU4QzExOC4xNzcsMjIwLjAyNCAxMjcuMDgyLDIwOC4xMDggMTIyLjcwNCwxOTcuNzY1QzEyMC4zMTgsMTkyLjEyNiAxMTQuNTM1LDE4OC4xNDIgMTA4LjI5LDE4OC4wMDNDMTA4LjE1MiwxODguMDAxIDEwOC4wMTQsMTg4IDEwNy44NzYsMTg4WiIgc3R5bGU9ImZpbGwtcnVsZTpub256ZXJvOyIvPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" !default;
+
+$internal-form-spinner-image: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+Cjxzdmcgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjNjY2NjY2IiB2aWV3Qm94PSIwIDAgMTggMTYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM6c2VyaWY9Imh0dHA6Ly93d3cuc2VyaWYuY29tLyIgc3R5bGU9ImZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDoxLjQxNDIxOyI+CiAgICA8cGF0aCBpZD0iYXJyb3ciIGNsYXNzPSJzdDAiIGQ9Ik05LjMsMTYuNGMzLjItMC40LDUuOC0yLjksNi4yLTYuMWMwLjUtNC4yLTIuOC03LjctNi45LTcuOFYwLjZjMC0wLjEtMC4xLTAuMi0wLjItMC4xbC00LDIuOQogICAgCWMtMC4xLDAtMC4xLDAuMSwwLDAuMmwzLjksMi44YzAuMSwwLjEsMC4yLDAsMC4yLTAuMVY0LjVjMi45LDAsNS4yLDIuNSw1LDUuNGMtMC4yLDIuNS0yLjIsNC41LTQuOCw0LjdjLTIuNywwLjItNS0xLjctNS40LTQuMgogICAgCWMtMC4xLTAuNS0wLjUtMC44LTEtMC44Yy0wLjYsMC0xLDAuNS0xLDEuMUMyLjEsMTQuMiw1LjQsMTYuOSw5LjMsMTYuNEw5LjMsMTYuNHoiPgogICAgICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZVR5cGU9InhtbCIgYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjM2MCA4LjQgOS41IiB0bz0iMCA4LjQgOS41IiBkdXI9IjAuNXMiIGFkZGl0aXZlPSJzdW0iIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiAvPgogICAgPC9wYXRoPgo8L3N2Zz4K" !default;
+/* ==================================================
+    Component: Form
+   ================================================== */
+
+/*
+ * 1. Define consistent box sizing.
+ *    Default is `content-box` with following exceptions set to `border-box`
+ *    `select`, `input[type="checkbox"]` and `input[type="radio"]`
+ *    `input[type="search"]` in Chrome, Safari and Opera
+ *    `input[type="color"]` in Firefox
+ * 2. Address margins set differently in Firefox/IE and Chrome/Safari/Opera.
+ * 3. Remove `border-radius` in iOS.
+ * 4. Change font properties to `inherit` in all browsers.
+ */
+
+.vh-input,
+.vh-select,
+.vh-textarea,
+.vh-radio,
+.vh-checkbox{
+    /* 1 */
+    box-sizing: border-box;
+    /* 2 */
+    margin: 0;
+    /* 3 */
+    border-radius: 0;
+    /* 4 */
+    font: $form-font-family;
+}
+
+/*
+ * Show the overflow in Edge
+ */
+
+.vh-input{
+    overflow: visible;
+}
+
+/*
+ * Remove the inheritance of text transform in firefox
+ */
+
+.vh-select{
+    text-transform: none;
+}
+
+/*
+ * 1. Change font properties to `inherit` in all browsers
+ * 2. Don't inherit the `font-weight` and use `bold` instead.
+ * NOTE: Both declarations don't work in Chrome, Safari and Opera.
+ */
+
+.vh-select optgroup{
+    /* 1 */
+    font: inherit;
+    /* 2 */
+    font-weight: bold;
+}
+
+/*
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+.vh-textarea{
+    overflow: auto;
+}
+
+/*
+ * Remvoe the inner padding and cancel buttons in Chrome on OS X and Safari on OS X.
+ */
+ 
+.vh-input[type="search"]::-webkit-search-cancel-button,
+.vh-input[type="search"]::-webkit-search-decoration{
+    -webkit-appearance: none;
+}
+
+.vh-input[type="search"]{
+    padding-right: $form-select-padding-right;
+    background: url($internal-form-search-2-image);
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+}
+
+
+.vh-input.vh-searching[type="search"]{
+    padding-right: $form-select-padding-right;
+    background: url($internal-form-spinner-image);
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+}
+
+/*
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+.vh-input[type="number"]::-webkit-inner-spin-button,
+.vh-input[type="number"]::-webkit-outer-spin-button{
+    height: auto;
+}
+
+/*
+ * Removes placeholder transparency in Firefox
+ */
+
+.vh-input::-moz-placeholder,
+.vh-textarea::-moz-placeholder{
+    opacity: 1;
+}
+
+/*
+ * Improves consistency of cursor style for clikable elements
+ */
+
+.vh-radio:not(:disabled),
+.vh-checkbox:not(:disabled){
+    cursor: pointer;
+}
+
+/*
+ * Define consistent border, margin, and padding
+ */
+
+.vh-fieldset{
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Input, select and textarea
+ * Allowed: `text`, `password`, `datetime`, `datetime-local`, `date`,  `month`,
+            `time`, `week`, `number`, `email`, `url`, `search`, `tel`, `color`
+ * Disallowed: `range`, `radio`, `checkbox`, `file`, `submit`, `reset` and `image`
+ ========================================================================== */
+
+/*
+ * Remove default style in iOS.
+ */
+
+.vh-input,
+.vh-textarea{
+    -webkit-appearance: none
+ }
+ 
+ /*
+  * 1. Prevent content overflow if a fixed width is used
+  * 2. Take the full width
+  * 3. Reset default
+  * 4. Style
+  */
+
+.vh-input,
+.vh-select,
+.vh-textarea{
+    /* 1 */
+    max-width: 100%;
+    /* 2 */
+    width: 100%;
+    /* 3 */
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    /* 4 */
+    padding: 0 $form-padding-horizontal;
+    background: $form-background;
+    color: $form-color;
+}
+
+/*
+ * Single-line
+ * 1. Allow any element to look like an `input` or `select` element
+ * 2. Make sure line-height is not larger than height
+ *    Also needed to center the text vertically
+ */
+
+.vh-input,
+.vh-select:not([multiple]):not([size]){
+    height: $form-height;
+    vertical-align: middle;
+    /* 1 */
+    display: inline-block;
+}
+
+/* 2 */
+.vh-input:not(input),
+.vh-select:not(select){
+    line-height: $form-line-height;
+}
+
+/*
+ * Multi-line
+ */
+
+.vh-select[multiple],
+.vh-select[size],
+.vh-textarea{
+    padding-top: $form-padding-vertical;
+    padding-bottom: $form-padding-vertical;
+    vertical-align: top;
+}
+
+/* Focus */
+.vh-input:focus,
+.vh-select:focus,
+.vh-textarea:focus{
+    border: 1px solid color(primary);
+    outline: none;
+    background-color: $form-focus-background;
+    color: $form-focus-color;
+}
+
+
+/* Disabled */
+.vh-input:disabled,
+.vh-select:disabled,
+.vh-textarea:disabled{
+    background-color: $form-disabled-background;
+    color: $form-disabled-color;
+}
+
+/*
+ * Placeholder
+ */
+
+.vh-input:-ms-input-placeholder{
+    color: $form-placeholder-color !important;
+}
+
+.vh-input::placeholder{
+    color: $form-placeholder-color;
+}
+
+.vh-textarea:-ms-input-placeholder{
+    color: $form-placeholder-color !important;
+}
+
+.vh-textarea::placeholder{
+    color: $form-placeholder-color;
+}
+
+/* Style modifier (`uk-input`, `uk-select` and `uk-textarea`)
+ ========================================================================== */
+
+/*
+ * Small
+ */
+
+.vh-form-small{
+    font-size: $form-small-font-size;
+}
+
+.vh-form-small:not(textarea):not([multiple]):not([size]){
+    height: $form-small-height;
+    padding-left: $form-small-padding-horizontal;
+    padding-right: $form-small-padding-horizontal;
+}
+
+.vh-form-small:not(select):not(input):not(textarea){
+    line-height: $form-small-line-height;
+}
+
+/*
+ * Large
+ */
+
+.vh-form-large{
+    font-size: $form-large-font-size;
+}
+
+.vh-form-large:not(textarea):not([multiple]):not([size]){
+    height: $form-large-height;
+    padding-left: $form-large-padding-horizontal;
+    padding-right: $form-large-padding-horizontal;
+}
+
+.vh-form-large:not(select):not(input):not(textarea){
+    line-height: $form-large-line-height;
+}
+
+
+
+/* Style modifier (`uk-input`, `uk-select` and `uk-textarea`)
+ ========================================================================== */
+
+/*
+ * Error
+ */
+
+.vh-form-danger,
+.vh-form-danger:focus{
+    color: color(default);
+    border-color: $form-danger-color
+}
+
+/*
+ * Success
+ */
+
+.vh-form-success,
+.vh-form-success:focus{
+    color: color(default);
+    border-color: $form-success-color
+}
+
+/*
+ * Blank
+ */
+
+.vh-form-blank{
+    background: none;
+    border: none;
+}
+
+.vh-form-blank:focus{
+    border: 1px dashed #E5E5E5;
+}
+
+
+
+/* Width modifiers (`uk-input`, `uk-select` and `uk-textarea`)
+ ========================================================================== */
+
+/*
+ * Fixed widths
+ * Different widths for mini sized `input` and `select` elements
+ */
+
+input.vh-form-width-xsmall{
+    width: $form-width-xsmall;
+}
+
+select.vh-form-width-xsmall{
+    width: ($form-width-xsmall + 25px);
+}
+
+.vh-form-width-small{
+    width: $form-width-small;
+}
+
+.vh-form-width-medium{
+    width: $form-width-medium;
+}
+
+.vh-form-width-large{
+    width: $form-width-large;
+}
+
+
+
+/* Select
+ ========================================================================== */
+
+/*
+ * 1. Remove default style. Also works in Firefox
+ * 2. Style
+ * 3. Remove default style in IE 10/11
+ * 4. Set `color` for options in the select dropdown, because the inherited `color` might be too light.
+ */
+
+.vh-select:not([multiple]):not([size]){
+    /* 1 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* 2 */
+    padding-right: $form-select-padding-right;
+    background: url($internal-form-select-image);
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+}
+
+/* 3 */
+.vh-select:not([multiple]):not([size])::-ms-expand{
+    display: none;
+}
+
+/* 4 */
+.vh-select:not([multiple]):not([size]) option{
+    color: $form-select-option-color;
+}
+
+/*
+ * Disabled
+ */
+
+.vh-select:not([multiple]):not([size]):disabled{
+    background: url($internal-form-select-image) $form-select-disabled-icon-color $global-muted-background;
+}
+
+
+
+/* Radio and checkbox
+ * Note: Does not work in IE11
+ ========================================================================== */
+
+/*
+ * 1. Style
+ * 2. Make box more robust so it clips the child element
+ * 3. Vertical alignment
+ * 4. Remove default style
+ * 5. Fix black background on iOS
+ * 6. Center icons
+ * 7. Style
+ */
+
+.vh-radio,
+.vh-checkbox{
+    /* 1 */
+    display: inline-block;
+    height: $form-radio-size;
+    width: $form-radio-size;
+    /* 2 */
+    overflow: hidden;
+    /* 3 */
+    margin-top: $form-radio-margin-top;
+    vertical-align: middle;
+    /* 4 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* 5 */
+    background-color: $form-radio-background;
+    /* 6 */
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    /* 7 */
+    border: solid 0.5px #E5E5E5;
+}
+
+.vh-radio{
+    border-radius: 50%;
+}
+
+/* Focus */
+.vh-radio:focus,
+.vh-checkbox:focus{
+    outline: none;
+}
+
+/*
+ * Checked
+ */
+
+.vh-radio:checked,
+.vh-checkbox:checked,
+.vh-checkbox:indeterminate{
+    background-color: $form-radio-checked-background;
+}
+
+/* Focus */
+.vh-radio:checked:focus,
+.vh-checkbox:checked:focus,
+.vh-checkbox:indeterminate:focus{
+    background-color: $form-radio-checked-focus-background;
+}
+
+/*
+ * Icons
+ */
+
+.vh-radio:checked{
+    background: color(primary);
+}
+
+.vh-checkbox:checked{
+    background-color: color(primary);
+}
+
+.vh-checkbox:indeterminate{
+    background: url($internal-form-checkbox-indeterminate-image);
+}
+
+/*
+ * Disabled
+ */
+
+.vh-radio:disabled,
+.vh-checkbox:disabled{
+    background-color: $form-radio-disabled-background;
+}
+
+.vh-radio:disabled:checked{
+    background: url($internal-form-radio-image) $form-radio-disabled-icon-color $global-muted-background;
+}
+
+.vh-checkbox:disabled:checked{
+    background: url($internal-form-checkbox-image) $form-radio-disabled-icon-color $global-muted-background;
+}
+
+.vh-checkbox:disabled:indeterminate{
+    background: url($internal-form-checkbox-indeterminate-image) $form-radio-disabled-icon-color $global-muted-background;
+}
+
+
+
+/* Legend
+ ========================================================================== */
+
+/*
+ * Legend
+ * 1. Behave like block element
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove padding so people aren't caught out if they zero out fieldsets.
+ * 4. Style
+ */
+
+.vh-legend{
+    /* 1 */
+    width: 100%;
+    /* 2 */
+    color: inherit;
+    /* 3 */
+    padding: 0;
+    /* 4 */
+    font-size: $form-legend-font-size;
+    line-height: $form-legend-line-height;
+}
+
+
+
+/* Custom controls
+ ========================================================================== */
+
+/*
+ * 1. Container fits its content
+ * 2. Create position context
+ * 3. Prevent content overflow
+ * 4. Behave like most inline-block elements
+ */
+
+.vh-form-custom{
+    /* 1 */
+    display: inline-block;
+    /* 2 */
+    position: relative;
+    /* 3 */
+    max-width: 100%;
+    /* 4 */
+    vertical-align: middle;
+}
+
+/*
+ * 1. Position and resize the form control to always cover its container
+ * 2. Required for Firefox for positioning to the left
+ * 3. Required for Webkit to make `height` work
+ * 4. Hide controle and show cursor
+ * 5. Needed for the cursor
+ * 6. Clip height caused by 5. Needed for Webkit only
+ */
+
+.vh-form-custom select,
+.vh-form-custom input[type="file"]{
+    /* 1 */
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    /* 2 */
+    left: 0;
+    /* 3 */
+    -webkit-appearance: none;
+    /* 4 */
+    opacity: 0;
+    cursor: pointer;
+}
+
+.vh-form-custom input[type="file"]{
+    /* 5 */
+    font-size: 500px;
+    /* 6 */
+    overflow: hidden;
+}
+
+
+
+/* Layout
+ ========================================================================== */
+
+/*
+ * Stacked
+ */
+
+.vh-form-stacked .vh-form-label{
+    display: block;
+    margin-bottom: $form-stacked-margin-bottom;
+    font-size: $form-small-font-size;
+}
+
+/*
+ * Horizontal
+ */
+
+/* Tablet portrait and smaller */
+@media (max-width: map-get($breakpoint, small)){
+
+    /* Behave like `uk-form-stacked` */
+    .vh-form-horizontal .vh-form-label{
+        display: block;
+        margin-bottom: $form-stacked-margin-bottom;
+    }
+}
+
+/* Tablet landscape and bigger */
+@include respond-to(medium){
+
+    .vh-form-horizontal .vh-form-label{
+        width: $form-horizontal-label-width;
+        margin-top: $form-horizontal-label-margin-top;
+        float: left;
+    }
+
+    .vh-form-horizontal .vh-form-controls{
+        margin-left: $form-horizontal-controls-margin-left;
+    }
+
+    /* Better vertical alignment if controls are checkboxes and radio buttons with text */
+    .vh-form-horizontal .vh-form-controls-text{
+        padding-top: $form-horizontal-controls-text-padding-top;
+    }
+}
+
+
+
+/* Icons
+ ========================================================================== */
+
+/*
+ * 1. Set position
+ * 2. Set width
+ * 3. Center icon vertically and horizontally
+ * 4. Style
+ */
+
+.vh-form-icon{
+    /* 1 */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    /* 2 */
+    width: $form-icon-width;
+    /* 3 */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    /* 4 */
+    color: $form-icon-color;
+}
+
+/*
+ * Required for `a`.
+ */
+
+.vh-form-icon:hover{
+    color: $form-icon-hover-color;
+}
+
+/*
+ * Make `input` element clickable through icon, e.g. if it's a `span`
+ */
+
+.vh-form-icon:not(a):not(button):not(input){
+    pointer-events: none;
+}
+
+/*
+ * Input padding
+ */
+
+.vh-form-icon:not(.vh-form-icon-flip) ~ .vh-input{
+    padding-left: $form-icon-width !important;
+}
+
+/*
+ * Position modifier
+ */
+
+.vh-form-icon-flip{
+    right: 0;
+    left: auto;
+}
+
+.vh-form-icon-flip ~ .vh-input{
+    padding-right: $form-icon-width !important;
+}
+
+
+
+/* Switch
+ ========================================================================== */
+
+.vh-switch{
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.vh-switch input{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.vh-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.vh-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+input:checked + .vh-slider {
+    background-color: color(primary);
+}
+  
+input:focus + .vh-slider {
+    box-shadow: 0 0 1px color(primary);
+}
+  
+input:checked + .vh-slider:before {
+    -webkit-transform: translateX(24px);
+    -ms-transform: translateX(24px);
+    transform: translateX(24px);
+}
+  
+  /* Rounded sliders */
+.vh-slider.vh-slider-round {
+    border-radius: 34px;
+}
+  
+.vh-slider.vh-slider-round:before {
+    border-radius: 50%;
+}

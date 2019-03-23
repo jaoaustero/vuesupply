@@ -1,0 +1,58 @@
+// Name:            Label
+// Description:     Component to indicate important notes
+//
+// Component:       `vh-label`
+//
+// Modifier:        `vh-label-default`
+//                  `vh-label-primary`
+//                  `vh-label-secondary`
+//                  `vh-label-success`
+//                  `vh-label-warning`
+//                  `vh-label-danger`
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+$label-padding-vertical:                        0 !default;
+$label-padding-horizontal:                      margin(small) !default;
+$label-padding-vertical-l:                      4px !default;
+$label-padding-horizontal-l:                    (margin(small) + 4px) !default;
+
+$label-background:                              $global-muted-background !default;
+$label-line-height:                             font(line-height) !default;
+$label-font-size:                               font-size(small) !default;
+$label-color:                                   color(default) !default;
+
+
+
+/* ==================================================
+    Component: Label
+   ================================================== */
+
+.vh-label{
+    display: inline-block;
+    padding: $label-padding-vertical $label-padding-horizontal;
+    background: $label-background;
+    line-height: $label-line-height;
+    font-size: $label-font-size;
+    color: $label-color;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+
+
+/* Size Modifier
+   ================================================== */
+
+.vh-label-large{
+    padding: $label-padding-vertical-l $label-padding-horizontal-l;
+}
+
+
+/* Style Modifiers
+   ================================================== */
+
+@include create-modifiers(label);
