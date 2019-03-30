@@ -14,8 +14,6 @@ yarn-error.log*
 *.sln
 
 # Ignore document files
-build/
-config/
 src/App.vue
 src/main.js
 src/docs

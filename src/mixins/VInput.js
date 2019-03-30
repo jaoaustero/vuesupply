@@ -1,4 +1,4 @@
-import {joinClass} from '@/utils/class';
+import {joinClass} from '../utils/class';
 
 export const sharedProps = {
     props:
