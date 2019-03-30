@@ -12,3 +12,12 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+# Ignore document files
+build/
+config/
+src/App.vue
+src/main.js
+src/docs
+index.html
+static/img

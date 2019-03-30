@@ -15,10 +15,11 @@
 // Variables
 // ========================================================================
 
-$label-padding-vertical:                        0 !default;
+$label-padding-vertical:                        0px !default;
 $label-padding-horizontal:                      margin(small) !default;
 $label-padding-vertical-l:                      4px !default;
 $label-padding-horizontal-l:                    (margin(small) + 4px) !default;
+$label-border-radius:                           40px;
 
 $label-background:                              $global-muted-background !default;
 $label-line-height:                             font(line-height) !default;
@@ -40,6 +41,7 @@ $label-color:                                   color(default) !default;
     color: $label-color;
     vertical-align: middle;
     white-space: nowrap;
+    border-radius: $label-border-radius;
 }
 
 

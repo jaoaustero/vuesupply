@@ -37,7 +37,7 @@ $button-padding-horizontal:                 gutter(small) !default;
 $button-small-padding-horizontal:           gutter(xsmall) !default;
 $button-large-padding-horizontal:           gutter(large) !default;
 
-$button-border-radius:                      4px !default;
+$button-border-radius:                      100px !default;
 $button-border-width:                       border(border-width) !default;
 $button-border-color:                       border(border-color) !default;
 
@@ -55,6 +55,26 @@ $button-link-hover-color:                   link(dark) !default;
 $button-link-line-height:                   font(line-height) !default;
 $button-link-hover-text-decoration:         underline !default;
 $button-link-disabled-color:                color(muted) !default;
+
+$button-icon-width:                         $button-line-height !default;
+$button-icon-background:                    darken(color(inverse), 10%) !default;
+$button-icon-color:                         color(default);
+
+$button-icon-primary-background:            lighten(color(primary), 10%) !default;
+$button-icon-primary-color:                 color(inverse);
+
+$button-icon-secondary-background:          lighten(color(secondary), 10%) !default;
+$button-icon-secondary-color:               color(inverse);
+
+$button-icon-success-background:            lighten(color(success), 10%) !default;
+$button-icon-success-color:                 color(inverse);
+
+$button-icon-warning-background:            lighten(color(warning), 10%) !default;
+$button-icon-warning-color:                 color(inverse);
+
+$button-icon-danger-background:             lighten(color(danger), 10%) !default;
+$button-icon-danger-color:                  color(inverse);
+
 /*
  * 1. Remove margins in Chrome, Safari, and Opera.
  * 2. Remove borders for `button`.
@@ -100,6 +120,10 @@ $button-link-disabled-color:                color(muted) !default;
 
 .vh-button:not(:disabled){
     cursor: pointer;
+}
+
+.vh-button:disabled{
+    cursor: not-allowed;
 }
 
 /*
@@ -200,6 +224,7 @@ $button-link-disabled-color:                color(muted) !default;
 /* Disabled */
 .vh-button-text:disabled{
     color: $button-text-disabled-color;
+    cursor: not-allowed;
 }
 
 .vh-button-text-danger:enabled{
@@ -314,4 +339,89 @@ $button-link-disabled-color:                color(muted) !default;
 .vh-ghost-button:focus{
     background-color: color(primary);
     color: color(inverse);
+}
+
+
+/* Icon Modifiers
+   ================================================== */
+
+/*
+ * 1. Set position
+ * 2. Set width
+ * 3. Center icon vertically and horizontally
+ * 4. Style
+ */
+
+.vh-button-icon{
+    /* 1 */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    /* 2 */
+    width: $button-icon-width;
+    /* 3 */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    /* 4 */
+    background-color: $button-icon-background;
+    color: $button-icon-color;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+/* Primary */
+.vh-button-icon.vh-button-icon-primary{
+    background-color: $button-icon-primary-background;
+    color: $button-icon-primary-color;
+}
+
+.vh-button-icon.vh-button-icon-primary:hover + .vh-button-primary,
+.vh-button-icon.vh-button-icon-primary:focus + .vh-button-primary{
+    background-color: darken($color: color(primary), $amount: 5%);
+}
+
+/* Secondary */
+.vh-button-icon.vh-button-icon-secondary{
+    background-color: $button-icon-secondary-background;
+    color: $button-icon-secondary-color;
+}
+
+.vh-button-icon.vh-button-icon-secondary:hover + .vh-button-secondary,
+.vh-button-icon.vh-button-icon-secondary:focus + .vh-button-secondary{
+    background-color: darken($color: color(secondary), $amount: 5%);
+}
+
+/* Success */
+.vh-button-icon.vh-button-icon-success{
+    background-color: $button-icon-success-background;
+    color: $button-icon-success-color;
+}
+
+.vh-button-icon.vh-button-icon-success:hover + .vh-button-success,
+.vh-button-icon.vh-button-icon-success:focus + .vh-button-success{
+    background-color: darken($color: color(success), $amount: 5%);
+}
+
+/* Warning */
+.vh-button-icon.vh-button-icon-warning{
+    background-color: $button-icon-warning-background;
+    color: $button-icon-warning-color;
+}
+
+.vh-button-icon.vh-button-icon-warning:hover + .vh-button-warning,
+.vh-button-icon.vh-button-icon-warning:focus + .vh-button-warning{
+    background-color: darken($color: color(warning), $amount: 5%);
+}
+
+/* Danger */
+.vh-button-icon.vh-button-icon-danger{
+    background-color: $button-icon-danger-background;
+    color: $button-icon-danger-color;
+}
+
+.vh-button-icon.vh-button-icon-danger:hover + .vh-button-danger,
+.vh-button-icon.vh-button-icon-danger:focus + .vh-button-danger{
+    background-color: darken($color: color(danger), $amount: 5%);
 }

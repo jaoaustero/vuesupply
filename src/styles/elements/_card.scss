@@ -103,50 +103,6 @@ $card-large-footer-padding-vertical-l:      round(gutter(large) / 2) !default;
     border-radius: $card-border-radius;
 }
 
-.vh-card-border{
-    border: $card-border-width solid $card-border-color;
-}
-
-.vh-card-user .vh-card-body::before{
-    content: "";
-    position: absolute;
-
-    left: -100px;
-    top: -100px;
-
-    height: 200px;
-    width: 200px;
-    border-radius: 100%;
-    background-color: color(primary);
-    z-index: 100;
-}
-
-
-.vh-card-user-image{
-    position: relative;
-    z-index: 200;
-}
-
-.vh-indicator{
-    position: absolute;
-    
-    bottom: 2px;
-    right: 2px;
-    z-index: 300;
-    height: 14px;
-    width: 14px;
-    border: 3px solid color(inverse);
-    background-color: color(muted);
-    border-radius: 100%;
-}
-
-.vh-indicator-online{
-    background-color: color(success);
-}
-
-.vh-indicator-busy{
-    background-color: color(danger);
-}
 
 /* Sections
    ================================================== */ 
@@ -224,35 +180,7 @@ $card-large-footer-padding-vertical-l:      round(gutter(large) / 2) !default;
     right: 25px!important;
 }
 
-// .vh-card-dropdown{
-//     float: right;
-//     position: relative;
-//     top: 15px;
-//     right: 25px;
-// }
 
-// .vh-card-dropdown i{
-//     color: color(muted);
-//     cursor: pointer;
-//     transition: all 0.15s linear;
-// }
-
-// .vh-card-dropdown:hover i{
-//     color: color(default);
-// }
-
-
-// .vh-card-media-dropdown{
-//     position: absolute;
-//     top: 15px;
-//     right: 25px;
-//     cursor: pointer;
-// }
-
-// .vh-card-media-dropdown > .vh-card-dropdown{
-//     top: 0;
-//     right: 0;
-// }
 
 /* Badge
    ================================================== */ 
@@ -292,12 +220,14 @@ $card-large-footer-padding-vertical-l:      round(gutter(large) / 2) !default;
    ================================================== */
 
 /*
- * Primary
+ * Default
  */
  .vh-card-default{
     background-color: $card-default-background;
     color: $card-default-color;
     box-shadow: box-shadow(small);
+
+    border: $card-border-width solid $card-border-color;
 }
 
 .vh-card-default .vh-card-title{
@@ -377,8 +307,4 @@ $card-large-footer-padding-vertical-l:      round(gutter(large) / 2) !default;
     .vh-card-large .vh-card-footer{
         padding: $card-large-footer-padding-vertical-l $card-large-footer-padding-horizontal-l;
     }
-}
-
-.vh-card-primary-light{
-    background-color: transparentize(color(primary), 0.9);
 }

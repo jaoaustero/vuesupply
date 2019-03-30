@@ -199,23 +199,23 @@ $dragover-box-shadow:                            0 0 20px rgba(100,100,100,0.3) 
  * 6. Clip child elements
  */
 
-// [class*='vh-inline']{
-//     /* 1 */
-//     display: inline-block;
-//     /* 2 */
-//     position: relative;
-//     /* 3 */
-//     max-width: 100%;
-//     /* 4 */
-//     vertical-align: middle;
-//     /* 5 */
-//     -webkit-backface-visibility: hidden;
-// }
+[class*='vh-inline']{
+    /* 1 */
+    display: inline-block;
+    /* 2 */
+    position: relative;
+    /* 3 */
+    max-width: 100%;
+    /* 4 */
+    vertical-align: middle;
+    /* 5 */
+    -webkit-backface-visibility: hidden;
+}
 
-// .vh-inline-clip{
-//     /* 8 */
-//     overflow: hidden;
-// }
+.vh-inline-clip{
+    /* 8 */
+    overflow: hidden;
+}
 
 
 

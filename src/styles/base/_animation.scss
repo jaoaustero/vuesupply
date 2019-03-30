@@ -130,6 +130,25 @@
 
 
 
+/* Rotate
+================================================== */
+
+.vh-animate-rotate{
+    animation-name: rotating;
+    animation-timing-function: linear;
+}
+
+@keyframes rotating{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+
 /* Slide
 ================================================== */
 
