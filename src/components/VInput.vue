@@ -26,7 +26,7 @@
 import {sharedProps, sharedComputed, sharedIconProps} from '../mixins/VInput';
 
 // Utils
-import {joinClass} from '@/utils/class';
+import {joinClass} from '../utils/class';
 
 export default {
     name: 'VInput',
