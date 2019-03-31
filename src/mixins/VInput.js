@@ -58,11 +58,16 @@ export const sharedComputed = {
     {
         listeners: function()
         {
-            return{
-                ...this.$listeners,
-                input: event =>
-                    this.$emit('input', event.target.value)
-            }
+            var vm = this;
+
+            return Object.assign({},
+                this.$listeners,
+                
+                {
+                    input: event =>
+                        this.$emit('input', event.target.value)
+                }
+            )
         },
 
         classes: function()
