@@ -65,7 +65,7 @@ export const sharedComputed = {
                 
                 {
                     input: event =>
-                        this.$emit('input', event.target.value)
+                        vm.$emit('input', event.target.value)
                 }
             )
         },
