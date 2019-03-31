@@ -1,5 +1,5 @@
 <template>
-    <div class="vh-inline" v-if="icon">
+    <div class="vh-inline" v-if="icon" @click="onClick">
         <div class="vh-button-icon"
             :class="'vh-button-icon-'+color">
             <i class="fa"
@@ -24,6 +24,7 @@
         :disabled="disabled || loading"
         :href="isAnchor ? (disabled ? null : href) : null"
         :is="isAnchor ? 'a' : 'button'"
+        @click="onClick"
         >
         <slot v-if="!loading"></slot>
         <i v-else class="fa fa-spinner fa-lg vh-animate vh-animate-rotate vh-animate-infinite"></i>
@@ -114,6 +115,14 @@ export default {
         isAnchor: function()
         {
             return this.href !== undefined && this.href !== null;
+        }
+    },
+
+    methods:
+    {
+        onClick: function(e)
+        {
+            this.$emit('click', e);
         }
     }
 }
