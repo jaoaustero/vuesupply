@@ -1,7 +1,8 @@
 <template>
     <form
         class="vh-form"
-        :class="classes">
+        :class="classes"
+        @submit.prevent="submit">
         <slot></slot>
     </form>
 </template>
@@ -28,6 +29,11 @@ export default {
         {
             type: String,
             default: null // 'small', 'large'
+        },
+
+        submit:
+        {
+            type: Function
         }
     },
 
