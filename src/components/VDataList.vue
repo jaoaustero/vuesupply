@@ -15,10 +15,6 @@
     </div>
 </template>
 
-<style lang="scss">
-    @import '../styles/app';
-</style>
-
 <script>
 // Mixins
 import {sharedProps, sharedComputed, classes} from '../mixins/VInput';

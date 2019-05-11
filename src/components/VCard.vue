@@ -34,10 +34,6 @@
     </div>
 </template>
 
-<style lang="scss">
-    @import '../styles/app';
-</style>
-
 <script>
 import {joinClass} from '../utils/class';
 

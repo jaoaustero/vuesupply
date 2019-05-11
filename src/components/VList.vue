@@ -6,10 +6,6 @@
     </ul>
 </template>
 
-<style lang="scss">
-    @import '../styles/app';
-</style>
-
 <script>
 // Uitlities
 import {joinClass} from '../utils/class';

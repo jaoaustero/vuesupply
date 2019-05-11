@@ -14,10 +14,6 @@
     </table>
 </template>
 
-<style lang="scss">
-    @import '../styles/app';
-</style>
-
 <script>
 // Utilities
 import {joinClass} from '../utils/class';

@@ -6,9 +6,6 @@
     </div>
 </template>
 
-<style lang="scss">
-    @import '../styles/app';
-</style>
 
 <script>
 // Utilities

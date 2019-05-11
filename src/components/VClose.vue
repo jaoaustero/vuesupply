@@ -6,10 +6,6 @@
     </a>
 </template>
 
-<style lang="scss">
-    @import '../styles/app';
-</style>
-
 <script>
 export default {
     name: 'VClose',
